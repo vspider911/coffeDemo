@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кофейня «Зерно» — демо</title>
+  <meta name="description" content="Демо-сайт кофейни «Зерно»: меню, зерно недели, бронирование столика и контакты.">
+  <meta name="theme-color" content="#1c1714">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Кофейня «Зерно»">
+  <meta property="og:description" content="Кофе собственной обжарки, утренняя выпечка и зал на двенадцать столиков. ул. Кофейная, 1.">
+  <meta property="og:image" content="img/espresso.webp">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='12' cy='12' rx='7' ry='10' transform='rotate(30 12 12)' fill='%23c2541c' stroke='%231c1714' stroke-width='1.5'/%3E%3Cpath d='M15 4c-5 4-1 12-6 16' fill='none' stroke='%231c1714' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@500;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <!-- первый экран — в приоритете, остальные картинки грузятся сразу следом -->
+  <link rel="preload" as="image" href="img/hero-cup.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="img/beans-pile.webp" fetchpriority="high">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <p class="announce"><span>Обжариваем по четвергам</span><span class="announce__extra"> · Зерно отдыхает неделю перед тем, как попасть в чашку</span></p>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Зерно — наверх">
+        <svg class="logo__mark" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(30 12 12)"/><path d="M15 4c-5 4-1 12-6 16"/></svg>
+        Зерно
+      </a>
+      <nav class="nav" id="nav" aria-label="Разделы сайта">
+        <a href="#menu">Меню</a>
+        <a href="#bean">Зерно недели</a>
+        <a href="#brew">Как заварить</a>
+        <a href="#about">О нас</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a class="header__cta" href="#contacts">Забронировать</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="Открыть меню">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path class="nav-toggle__open" d="M4 7h16M4 12h16M4 17h16"/><path class="nav-toggle__close" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" id="hero">
+      <div class="hero__stage" id="heroStage">
+        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="container hero__top">
+          <p class="eyebrow">Кофейня и обжарка</p>
+          <h1>Кофе, который обжарили вчера</h1>
+        </div>
+        <div class="hero__scene">
+          <img class="hero__glass" id="heroGlass" src="img/hero-cup.webp" width="610" height="911" fetchpriority="high" alt="Бумажный стаканчик кофе с собой в горстке кофейных зёрен">
+          <div class="hero__pile" id="heroPile" aria-hidden="true">
+            <img class="hero__pile-img hero__pile-img--back" src="img/beans-pile.webp" width="1039" height="483" alt="">
+            <img class="hero__pile-img hero__pile-img--front" src="img/beans-front.webp" width="1039" height="483" alt="">
+            <img class="hero__bean hero__bean--1" src="img/bean-1.webp" alt="">
+            <img class="hero__bean hero__bean--2" src="img/bean-2.webp" alt="">
+            <img class="hero__bean hero__bean--3" src="img/bean-3.webp" alt="">
+            <img class="hero__bean hero__bean--4" src="img/bean-4.webp" alt="">
+          </div>
+        </div>
+        <p class="hero__wordmark" aria-hidden="true">Зерно</p>
+        <div class="container hero__finale" id="heroFinale">
+          <div class="hero__finale-left">
+            <p class="hero__word" aria-hidden="true">Сварим</p>
+            <p class="hero__stamp">Зерно обжарено вчера<br>Партия № 214</p>
+            <p class="hero__meta"><span class="status" data-open-status></span> · ул. Кофейная, 1</p>
+          </div>
+          <div class="hero__finale-right">
+            <p class="hero__word" aria-hidden="true">сегодня.</p>
+            <p class="hero__lead">Варим эспрессо из зёрен собственной обжарки, печём выпечку по утрам и ждём вас в зале на двенадцать столиков.</p>
+            <div class="hero__actions">
+              <a href="#menu" class="btn">Смотреть меню</a>
+              <a href="#contacts" class="link">Забронировать столик →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--saffron" id="menu">
+      <div class="container">
+        <div class="menu__head">
+          <h2>Меню</h2>
+          <div class="filters" id="filters">
+            <button class="filter is-active" data-filter="all" type="button" aria-pressed="true">Всё</button>
+            <button class="filter" data-filter="coffee" type="button" aria-pressed="false">Кофе</button>
+            <button class="filter" data-filter="other" type="button" aria-pressed="false">Другие напитки</button>
+            <button class="filter" data-filter="food" type="button" aria-pressed="false">Выпечка</button>
+            <button class="filter" data-filter="beans" type="button" aria-pressed="false">Зерно домой</button>
+          </div>
+        </div>
+        <div class="menu" id="menuList"></div>
+        <dl class="addons">
+          <div><dt>Альтернативное молоко</dt><dd>Овсяное, кокосовое или безлактозное — без доплаты</dd></div>
+          <div><dt>Сироп</dt><dd>Ваниль, карамель, лесной орех — 40 ₽</dd></div>
+          <div><dt>Помол</dt><dd>Смелем зерно под вашу кофеварку бесплатно</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="bean" id="bean">
+      <div class="container bean__inner">
+        <div>
+          <p class="eyebrow">Зерно недели</p>
+          <h2>Эфиопия Иргачеффе</h2>
+          <p class="bean__text">Светлая обжарка для эспрессо и фильтра. Яркая кислотность, чайное тело и долгое цветочное послевкусие.</p>
+          <p class="bean__notes">Бергамот · Жасмин · Лимонная цедра</p>
+          <p class="bean__prices">Эспрессо — 150 ₽ · Пачка 250 г — 890 ₽</p>
+          <div class="bean__actions">
+            <a class="btn btn--ink" href="#menu">Смотреть меню</a>
+            <a class="btn btn--outline" href="#contacts">Как нас найти</a>
+          </div>
+        </div>
+        <div>
+          <img class="bean__photo" src="img/espresso.webp" width="600" height="400" alt="Эспрессо в красной чашке с блюдцем на деревянном столе">
+          <dl class="specs">
+            <div><dt>Регион</dt><dd>Гедео</dd></div>
+            <div><dt>Высота</dt><dd>1900 м</dd></div>
+            <div><dt>Обработка</dt><dd>Мытая</dd></div>
+            <div><dt>Обжарка</dt><dd>Светлая</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section standards" id="standards" aria-labelledby="standardsTitle">
+      <div class="container">
+        <h2 class="standards__title" id="standardsTitle">Обжариваем маленькими партиями по большим правилам</h2>
+        <div class="standards__grid">
+          <ul class="standards__col">
+            <li>Фермерские лоты Эфиопии, Колумбии и Бразилии</li>
+            <li>Обжарка партиями по 12&nbsp;кг</li>
+            <li>Неделя отдыха после обжарки</li>
+          </ul>
+          <figure class="standards__photo">
+            <img src="img/standards-bean.webp" width="720" height="900" alt="Обжаренные кофейные зёрна крупным планом">
+            <figcaption class="standards__tag" aria-label="Партия номер 214">
+              Партия №&nbsp;<span class="odometer" data-odometer="214">214</span>
+            </figcaption>
+          </figure>
+          <ul class="standards__col">
+            <li>Каждую партию пробуем на каппинге</li>
+            <li>Мелем прямо перед заваркой</li>
+            <li>Вода проходит тройной фильтр</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--latte" id="about">
+      <div class="container about">
+        <div class="about__aside">
+          <p class="eyebrow">О нас</p>
+          <figure class="about__photo">
+            <img src="img/sections/about-roasting.webp" width="720" height="960" alt="Обжарщик высыпает горячее зерно в лоток ростера">
+            <figcaption>Обжарка по четвергам</figcaption>
+          </figure>
+        </div>
+        <div>
+          <p class="about__statement">Обжариваем небольшими партиями и варим так, как пили бы сами.</p>
+          <p class="about__text">«Зерно» — небольшая кофейня, где ценят простые вещи: хороший кофе, тёплый свет и неспешные разговоры. Мы работаем с фермерскими хозяйствами Эфиопии, Колумбии и Бразилии, обжариваем по четвергам и даём зерну неделю отдохнуть, прежде чем оно попадёт в кофемашину.</p>
+          <ul class="perks">
+            <li><strong>Wi-Fi и розетки</strong><span>У каждого столика, без пароля</span></li>
+            <li><strong>Можно с собакой</strong><span>Нальём воды в миску</span></li>
+            <li><strong>Вход без ступенек</strong><span>Удобно с коляской и на кресле</span></li>
+            <li><strong>Карта гостя</strong><span>Каждый седьмой напиток в подарок, регистрация по номеру телефона</span></li>
+            <li><strong>Своя кружка</strong><span>Скидка 10% на любой напиток навынос</span></li>
+            <li><strong>Оплата</strong><span>Картой, по СБП и наличными</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section brew" id="brew" aria-labelledby="brewTitle">
+      <div class="container">
+        <div class="brew__head">
+          <h2 id="brewTitle">Как заварить дома</h2>
+          <p class="brew__lead">Купили пачку зерна? Вот рецепты, по которым варим сами. Помол подскажем на кассе и смелем бесплатно.</p>
+        </div>
+        <div class="brew__cards">
+          <button class="brew-card" type="button" data-recipe="v60">
+            <img class="brew-card__img" src="img/brew/v60.webp" width="600" height="760" alt="">
+            <span class="brew-card__label">Воронка V60</span>
+            <span class="brew-card__more">Как заварить →</span>
+          </button>
+          <button class="brew-card" type="button" data-recipe="french">
+            <img class="brew-card__img" src="img/brew/french-press.webp" width="600" height="760" alt="">
+            <span class="brew-card__label">Френч-пресс</span>
+            <span class="brew-card__more">Как заварить →</span>
+          </button>
+          <button class="brew-card" type="button" data-recipe="coldbrew">
+            <img class="brew-card__img" src="img/brew/cold-brew.webp" width="600" height="760" alt="">
+            <span class="brew-card__label">Колд брю</span>
+            <span class="brew-card__more">Как заварить →</span>
+          </button>
+          <button class="brew-card" type="button" data-recipe="espresso">
+            <img class="brew-card__img" src="img/brew/espresso.webp" width="600" height="760" alt="">
+            <span class="brew-card__label">Эспрессо</span>
+            <span class="brew-card__more">Как заварить →</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" aria-labelledby="galleryTitle">
+      <div class="container">
+        <h2 class="gallery__title" id="galleryTitle">Для долгих разговоров, работы за ноутбуком и встреч, которые затянулись до закрытия.</h2>
+        <div class="gallery__collage">
+          <img class="gallery__img gallery__img--1" src="img/gallery/table.webp" width="560" height="700" alt="Столик у окна с чашкой кофе и блокнотом">
+          <img class="gallery__img gallery__img--2" src="img/gallery/cheers.webp" width="520" height="640" alt="Гости чокаются чашками капучино">
+          <img class="gallery__img gallery__img--3" src="img/gallery/cup.webp" width="480" height="480" alt="Чашка чёрного кофе на деревянной доске">
+          <img class="gallery__img gallery__img--4" src="img/gallery/bar.webp" width="600" height="760" alt="Барная стойка с кофемолками и лампами">
+          <img class="gallery__img gallery__img--5" src="img/gallery/hands.webp" width="520" height="520" alt="Капучино с латте-артом в руках">
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--mocha" id="contacts">
+      <div class="container contacts">
+        <div>
+          <h2>Контакты</h2>
+          <dl class="info">
+            <div><dt>Адрес</dt><dd>ул. Кофейная, 1<span class="info__note">5 минут пешком от метро «Центральная»</span></dd></div>
+            <div>
+              <dt>Часы работы</dt>
+              <dd>Пн–Пт 7:00–22:00<br>Сб–Вс 8:00–22:00<span class="info__note status" data-open-status></span></dd>
+            </div>
+            <div><dt>Телефон</dt><dd><a href="tel:+70000000000">+7 (000) 000-00-00</a></dd></div>
+            <div><dt>Почта</dt><dd><a href="mailto:hello@zerno.example">hello@zerno.example</a></dd></div>
+          </dl>
+          <svg class="map" viewBox="0 0 480 240" role="img" aria-label="Схема проезда: кофейня на пересечении улиц Кофейной и Обжарочной">
+            <rect width="480" height="240" class="map__bg"/>
+            <path class="map__road" d="M0 72h480M0 168h480M112 0v240M328 0v240"/>
+            <path class="map__road map__road--thin" d="M0 224L480 16M216 0v72M424 168v72"/>
+            <text x="16" y="160" class="map__label">ул. Кофейная</text>
+            <text x="344" y="128" class="map__label">Обжарочный пер.</text>
+            <circle cx="328" cy="168" r="24" class="map__halo"/>
+            <circle cx="328" cy="168" r="8" class="map__pin"/>
+            <text x="344" y="200" class="map__name">Зерно</text>
+          </svg>
+        </div>
+        <form class="form" id="contactForm">
+          <h3>Забронировать столик</h3>
+          <label>Имя<input type="text" name="name" autocomplete="name" required></label>
+          <label>Телефон<input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" required></label>
+          <div class="form__row">
+            <label>Дата и время<input type="datetime-local" name="time" step="900" required></label>
+            <label>Гостей
+              <select name="guests">
+                <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option value="6+">6 и больше</option>
+              </select>
+            </label>
+          </div>
+          <p class="form__hint">Бронируем в часы работы, не позже чем за час до закрытия.</p>
+          <button class="btn" type="submit">Отправить</button>
+          <p class="form__msg" id="formMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+    <section class="feed" aria-labelledby="feedTitle">
+      <div class="container feed__head">
+        <h2 class="feed__title" id="feedTitle">Для тех, кто серьёзно относится к кофе.</h2>
+        <a class="feed__follow" href="#top">Подписаться в Telegram</a>
+      </div>
+      <div class="feed__strip">
+        <img src="img/feed/1.webp" width="480" height="600" alt="Капучино среди комнатных растений">
+        <img src="img/feed/2.webp" width="480" height="600" alt="Две чашки с латте-артом на деревянном столике">
+        <img src="img/feed/3.webp" width="480" height="600" alt="Каппинг: чашки с разным кофе по кругу">
+        <img src="img/feed/4.webp" width="480" height="600" alt="Три стакана кофе с молоком на барной стойке">
+        <img src="img/feed/5.webp" width="480" height="600" alt="Капучино с сердцем на деревянном столе">
+        <img src="img/feed/6.webp" width="480" height="600" alt="Бариста рисует латте-арт">
+        <img src="img/feed/7.webp" width="480" height="600" alt="Чашка капучино на старом деревянном столе">
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__word" aria-hidden="true">Зерно</p>
+      <nav class="footer__nav" aria-label="Разделы сайта в подвале">
+        <a href="#menu">Меню</a>
+        <a href="#bean">Зерно недели</a>
+        <a href="#brew">Как заварить</a>
+        <a href="#about">О нас</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <form class="subscribe" id="subscribeForm" novalidate>
+        <p class="subscribe__title">Новости обжарки</p>
+        <label class="subscribe__field">
+          <span class="sr-only">Электронная почта</span>
+          <input type="email" name="email" id="subscribeEmail" placeholder="Электронная почта" autocomplete="email" required>
+          <button type="submit" aria-label="Подписаться">→</button>
+        </label>
+        <p class="subscribe__msg" id="subscribeMsg" role="status">Раз в неделю: какое зерно обжарили и что пить.</p>
+        <span class="barcode barcode--wide" aria-hidden="true"></span>
+      </form>
+      <div class="footer__row">
+        <span>© 2026 Кофейня «Зерно»</span>
+        <span class="footer__social"><a href="#top">Telegram</a><a href="#top">ВКонтакте</a></span>
+        <span>Демо-сайт · фото: Unsplash</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="dock" id="dock">
+    <span class="dock__text">Кофе, который обжарили вчера.</span>
+    <a class="dock__btn" href="#contacts">Забронировать</a>
+  </div>
+
+  <dialog class="recipe" id="recipe" aria-labelledby="recipeTitle">
+    <div class="recipe__inner">
+      <button class="recipe__close" id="recipeClose" type="button" aria-label="Закрыть рецепт">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <h3 class="recipe__title" id="recipeTitle"></h3>
+      <dl class="recipe__params" id="recipeParams"></dl>
+      <p class="recipe__subhead">Понадобится</p>
+      <ul class="recipe__ingredients" id="recipeIngredients"></ul>
+      <p class="recipe__subhead">Как приготовить</p>
+      <ol class="recipe__steps" id="recipeSteps"></ol>
+      <p class="recipe__bean" id="recipeBean"></p>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>

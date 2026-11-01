@@ -76,6 +76,7 @@
         <button class="btn btn--sm btn--ghost" id="refresh" type="button">Обновить</button>
         <button class="btn btn--sm btn--ghost" id="logout" type="button">Выйти</button>
       </div>
+      <p class="err" id="panelErr" hidden></p>
       <div class="kpis" id="kpis"></div>
       <div id="list"></div>
     </section>
@@ -89,8 +90,10 @@
   const money = (n) => Math.round(n).toLocaleString('ru-RU') + ' ₽';
   const fmtM = (m) => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
   const fmtD = (s) => new Date(s + 'T00:00:00').toLocaleDateString('ru-RU', { weekday: 'short', day: 'numeric', month: 'short' });
-  let token = sessionStorage.getItem('tb_admin') || '';
+  const ss = { get: (k) => { try { return sessionStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { sessionStorage.setItem(k, v); } catch {} }, del: (k) => { try { sessionStorage.removeItem(k); } catch {} } };
+  let token = ss.get('tb_admin') || '';
   let rows = [];
+  const showErr = (m) => { const el = $('#panelErr'); el.textContent = m; el.hidden = false; setTimeout(() => (el.hidden = true), 4000); };
 
   Object.entries(API.STATUS).forEach(([k, v]) => $('#fStatus').insertAdjacentHTML('beforeend', `<option value="${k}">${v}</option>`));
 
@@ -126,20 +129,20 @@
       $('#mode').classList.toggle('is-server', mode === 'server');
       render();
     } catch (e) {
-      if (e.status === 401) { sessionStorage.removeItem('tb_admin'); token = ''; $('#panel').hidden = true; $('#login').hidden = false; if ($('#pwd').value) { $('#loginErr').hidden = false; $('#loginErr').textContent = 'Неверный пароль'; } }
-      else alert(e.message);
+      if (e.status === 401) { ss.del('tb_admin'); token = ''; $('#panel').hidden = true; $('#login').hidden = false; if ($('#pwd').value) { $('#loginErr').hidden = false; $('#loginErr').textContent = 'Неверный пароль'; } }
+      else showErr(e.message);
     }
   };
 
-  $('#login').addEventListener('submit', (e) => { e.preventDefault(); token = $('#pwd').value; sessionStorage.setItem('tb_admin', token); load(); });
-  $('#logout').addEventListener('click', () => { sessionStorage.removeItem('tb_admin'); token = ''; $('#pwd').value = ''; $('#panel').hidden = true; $('#login').hidden = false; });
+  $('#login').addEventListener('submit', (e) => { e.preventDefault(); token = $('#pwd').value; ss.set('tb_admin', token); load(); });
+  $('#logout').addEventListener('click', () => { ss.del('tb_admin'); token = ''; $('#pwd').value = ''; $('#panel').hidden = true; $('#login').hidden = false; });
   $('#refresh').addEventListener('click', load);
   $('#fStatus').addEventListener('change', render);
   $('#fSearch').addEventListener('input', render);
   $('#list').addEventListener('change', async (e) => {
     const s = e.target.closest('select[data-id]'); if (!s) return;
     try { const b = await API.setStatus(token, s.dataset.id, s.value); rows = rows.map((r) => (r.id === b.id ? b : r)); render(); }
-    catch (err) { alert(err.message); load(); }
+    catch (err) { showErr(err.message); load(); }
   });
   if (token) load();
 })();

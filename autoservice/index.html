@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ТехБокс — автосервис: ремонт и ТО любых марок</title>
+  <meta name="description" content="Ремонт и ТО любых марок. Цена до начала работ, онлайн-запись на свободное время, статус ремонта онлайн, гарантия 1 год.">
+  <meta name="theme-color" content="#111315">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111315'/%3E%3Cpath d='M9 22l7-12 7 12z' fill='%23ff5a1f'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/hero.webp">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="api.js"></script>
+</head>
+<body>
+
+<a class="skip" href="#main">К содержимому</a>
+
+<div class="topbar">
+  <div class="container topbar__inner">
+    <span class="status" data-status><i></i><b>—</b></span>
+    <span class="topbar__addr"><span data-t="address">ул. Автомоторная, 12</span><span data-metro-row> · м. <span data-t="metro"></span></span></span>
+    <a class="topbar__phone" data-tel data-t="phone" href="#">+7 (495) 000-00-00</a>
+  </div>
+</div>
+
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a href="#top" class="logo" aria-label="На главную">
+      <span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__text" data-t="name">ТехБокс</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Разделы">
+      <a href="#services">Услуги</a>
+      <a href="#prices">Цены</a>
+      <a href="#booking">Запись</a>
+      <a href="#track">Статус ремонта</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+      <a href="#booking" class="btn btn--sm nav__cta">Записаться</a>
+    </nav>
+    <a href="#booking" class="btn btn--sm header__cta">Записаться</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== Первый экран ===== -->
+  <section class="hero">
+    <img class="hero__bg" src="img/hero.webp" alt="" width="1400" height="933" fetchpriority="high">
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--hero"><span class="eyebrow__dot"></span><span>Автосервис · <span data-t="city">Москва</span> · <span data-t="hoursText">ежедневно 9–21</span></span></p>
+      <h1 class="hero__title">Чиним честно.<br><em>Цена — до ремонта.</em></h1>
+      <p class="hero__lead">ТО, тормоза, подвеска, диагностика и шиномонтаж для любых марок. Выберите свободное время онлайн, а мастер назовёт стоимость до начала работ и покажет старые детали.</p>
+      <div class="hero__actions">
+        <a href="#booking" class="btn btn--lg">Записаться онлайн</a>
+        <a href="#prices" class="btn btn--lg btn--ghost-light">Рассчитать стоимость</a>
+      </div>
+      <ul class="hero__badges">
+        <li>Без доплат «за срочность»</li>
+        <li>Запчасти — ваши или наши</li>
+        <li>Заказ-наряд и чек</li>
+      </ul>
+    </div>
+    <div class="container">
+      <dl class="stats">
+        <div class="stat"><dt>Рейтинг</dt><dd><strong data-t="rating">4,9</strong><span data-t="ratingText">средняя оценка клиентов</span></dd></div>
+        <div class="stat"><dt>Часы работы</dt><dd><strong data-t="hoursShort">9–21</strong><span data-t="daysText">ежедневно, без выходных</span></dd></div>
+        <div class="stat"><dt>Гарантия</dt><dd><strong>12 мес.</strong><span>на работы и наши запчасти</span></dd></div>
+        <div class="stat"><dt>Опыт</dt><dd><strong data-t="years">10+ лет</strong><span data-t="boxesText">4 поста, свой склад запчастей</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===== Что беспокоит ===== -->
+  <section class="help" id="help">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Не знаете, что сломалось?</p>
+        <h2>Опишите симптом — подскажем, с чего начать</h2>
+      </div>
+      <div class="help__box">
+        <div class="chips" id="symptoms" role="tablist" aria-label="Симптомы"></div>
+        <div class="help__answer" id="symptomAnswer" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Услуги ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head section-head--row">
+        <div>
+          <p class="eyebrow">Услуги</p>
+          <h2>Всё для машины в&nbsp;одном боксе</h2>
+        </div>
+        <p class="section-lead">Обслуживаем по регламенту производителя и сохраняем гарантию дилера: ставим сертифицированные расходники и записываем всё в сервисную книжку.</p>
+      </div>
+      <div class="services__grid">
+        <a href="#prices" data-cat="to" class="svc reveal"><span class="svc__img"><img src="img/to.webp" alt="" loading="lazy" width="900" height="640"></span><span class="svc__body"><span class="svc__num">01</span><h3>ТО и замена масла</h3><span class="svc__text">Масло, фильтры, жидкости и свечи по регламенту.</span><span class="svc__price" data-from="to">—</span></span></a>
+        <a href="#prices" data-cat="brakes" class="svc reveal"><span class="svc__img"><img src="img/brakes.webp" alt="" loading="lazy" width="900" height="640"></span><span class="svc__body"><span class="svc__num">02</span><h3>Тормозная система</h3><span class="svc__text">Колодки, диски, суппорты, тормозная жидкость.</span><span class="svc__price" data-from="brakes">—</span></span></a>
+        <a href="#prices" data-cat="suspension" class="svc reveal"><span class="svc__img"><img src="img/suspension.webp" alt="" loading="lazy" width="900" height="640"></span><span class="svc__body"><span class="svc__num">03</span><h3>Подвеска и рулевое</h3><span class="svc__text">Стуки, люфты, амортизаторы, развал-схождение.</span><span class="svc__price" data-from="suspension">—</span></span></a>
+        <a href="#prices" data-cat="diag" class="svc reveal"><span class="svc__img"><img src="img/diag.webp" alt="" loading="lazy" width="900" height="640"></span><span class="svc__body"><span class="svc__num">04</span><h3>Компьютерная диагностика</h3><span class="svc__text">Расшифруем ошибки и объясним простыми словами.</span><span class="svc__price" data-from="diag">—</span></span></a>
+        <a href="#prices" data-cat="diag" class="svc reveal"><span class="svc__img"><img src="img/engine.webp" alt="" loading="lazy" width="900" height="640"></span><span class="svc__body"><span class="svc__num">05</span><h3>Двигатель и КПП</h3><span class="svc__text">ГРМ, сцепление, течи, ремонт коробки.</span><span class="svc__price">по запросу</span></span></a>
+        <a href="#prices" data-cat="diag" class="svc reveal"><span class="svc__img"><img src="img/electric.webp" alt="" loading="lazy" width="900" height="640"></span><span class="svc__body"><span class="svc__num">06</span><h3>Электрика и климат</h3><span class="svc__text">Свет, стартер, генератор, кондиционер.</span><span class="svc__price">по запросу</span></span></a>
+        <a href="#prices" data-cat="tires" class="svc reveal"><span class="svc__img"><img src="img/tires.webp" alt="" loading="lazy" width="900" height="640"></span><span class="svc__body"><span class="svc__num">07</span><h3>Шиномонтаж и хранение</h3><span class="svc__text">Переобувка, балансировка, проколы, хранение.</span><span class="svc__price" data-from="tires">—</span></span></a>
+        <a href="#booking" class="svc svc--accent reveal"><span class="svc__img"><img src="img/lift.webp" alt="" loading="lazy" width="1000" height="667"></span><span class="svc__body"><span class="svc__num">08</span><h3>Осмотр на подъёмнике</h3><span class="svc__text">Честно скажем, что срочно, а что может подождать.</span><span class="svc__price">0 ₽ при ремонте</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Калькулятор ===== -->
+  <section class="prices" id="prices">
+    <div class="container prices__inner">
+      <div class="prices__list">
+        <div class="section-head">
+          <p class="eyebrow">Цены и калькулятор</p>
+          <h2>Отметьте работы — сумма посчитается сразу</h2>
+          <p class="section-lead">Цены на работу указаны «от». Запчасти можно привезти свои или купить у нас. Точную стоимость мастер назовёт до начала ремонта.</p>
+        </div>
+        <div class="carclass" id="carClass" role="radiogroup" aria-label="Класс автомобиля"></div>
+        <div class="tabs" id="tabs" role="tablist" aria-label="Категории работ"></div>
+        <div class="calc" id="calc"></div>
+      </div>
+      <aside class="summary" id="summary" aria-label="Ваш заказ">
+        <div class="summary__head">
+          <p class="summary__label">Ваш заказ</p>
+          <button type="button" class="summary__clear" id="sumClear" hidden>Очистить</button>
+        </div>
+        <ul class="summary__items" id="sumItems"><li class="summary__empty">Пока ничего не выбрано</li></ul>
+        <div class="summary__meta"><span>Время в боксе</span><b id="sumTime">—</b></div>
+        <div class="summary__total"><span>Итого за работу</span><strong id="sumTotal">0 ₽</strong></div>
+        <a href="#booking" class="btn btn--block" id="sumBook">Записаться с этими работами</a>
+        <p class="summary__note">Если по ходу ремонта найдём что-то ещё, сначала согласуем с вами по телефону или пришлём фото.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== Онлайн-запись ===== -->
+  <section class="booking" id="booking">
+    <div class="container booking__inner">
+      <div class="booking__pick">
+        <div class="section-head section-head--light">
+          <p class="eyebrow">Онлайн-запись</p>
+          <h2>Выберите свободное время</h2>
+          <p class="section-lead">Видно, когда бокс свободен. Запись занимает минуту, а мастер подтвердит её по телефону или в мессенджере.</p>
+        </div>
+        <div class="days" id="days" aria-label="День"></div>
+        <div class="slots" id="slots" aria-label="Время"></div>
+        <p class="slots__legend"><span><i class="free"></i>свободно</span><span><i class="sel"></i>выбрано</span><span><i></i>занято</span></p>
+      </div>
+      <form class="form" id="form" novalidate>
+        <h3>Ваша запись</h3>
+        <p class="form__picked" id="picked">Выберите время слева</p>
+        <label>Услуга<select id="fService"></select></label>
+        <div class="form__row">
+          <label>Ваше имя<input id="fName" placeholder="Как к вам обращаться" autocomplete="name" maxlength="60"></label>
+          <label>Марка и модель<input id="fCar" placeholder="Например, Kia Rio" autocomplete="off" maxlength="60"></label>
+        </div>
+        <label>Телефон<input id="fPhone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" autocomplete="tel" maxlength="18" required></label>
+        <label>Что беспокоит <small>(необязательно)</small><textarea id="fNote" rows="2" placeholder="Скрипят тормоза, горит Check Engine…" maxlength="500"></textarea></label>
+        <label class="check"><input type="checkbox" id="fAgree" checked><span>Согласен на обработку персональных данных для записи</span></label>
+        <button class="btn btn--block btn--lg" type="submit" id="fSubmit">Записаться</button>
+        <div class="form__ok" id="formOk" role="status" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Статус ремонта ===== -->
+  <section class="track" id="track">
+    <div class="container track__inner">
+      <div class="section-head">
+        <p class="eyebrow">Статус ремонта</p>
+        <h2>Узнайте, как дела у&nbsp;машины, без звонка</h2>
+        <p class="section-lead">Введите номер заказа из подтверждения и последние 4 цифры телефона. Для примера попробуйте заказ <button type="button" class="linkbtn" id="trackDemo">№ 1000 и 0000</button>.</p>
+      </div>
+      <div class="track__panel">
+        <form class="track__form" id="trackForm" novalidate>
+          <label>Номер заказа<input id="tId" inputmode="numeric" placeholder="1000" maxlength="7"></label>
+          <label>4 цифры телефона<input id="tPhone" inputmode="numeric" placeholder="0000" maxlength="4"></label>
+          <button class="btn" type="submit">Проверить</button>
+        </form>
+        <div class="track__result" id="trackResult" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Как работаем ===== -->
+  <section class="how">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Как мы работаем</p>
+        <h2>Без сюрпризов в&nbsp;чеке</h2>
+      </div>
+      <ol class="steps">
+        <li class="reveal"><span class="steps__n">01</span><h3>Запись онлайн</h3><p>Выбираете удобное время и приезжаете без очереди.</p></li>
+        <li class="reveal"><span class="steps__n">02</span><h3>Осмотр и смета</h3><p>Мастер смотрит машину и называет цену до начала работ.</p></li>
+        <li class="reveal"><span class="steps__n">03</span><h3>Ремонт</h3><p>Делаем только согласованное. Старые запчасти отдаём вам.</p></li>
+        <li class="reveal"><span class="steps__n">04</span><h3>Гарантия</h3><p>Чек, заказ-наряд и гарантия на работы — 12&nbsp;месяцев.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Марки ===== -->
+  <section class="brands" aria-label="Обслуживаемые марки">
+    <div class="marquee"><ul class="marquee__track" id="brands"></ul></div>
+  </section>
+
+  <!-- ===== Отзывы ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-head section-head--row">
+        <div>
+          <p class="eyebrow">Отзывы</p>
+          <h2><span data-t="rating">4,9</span> <span class="reviews__stars" aria-hidden="true">★★★★★</span><br><small data-t="votesText">по отзывам клиентов</small></h2>
+        </div>
+        <a class="link" data-map href="#contacts" target="_blank" rel="noopener">Все отзывы на Яндекс Картах →</a>
+      </div>
+      <div class="reviews__grid">
+        <blockquote class="review reveal"><p>«Записался онлайн на вечер, приехал, и машину сразу загнали в бокс. Цену назвали заранее, столько в итоге и заплатил».</p><footer><b>Андрей</b><span>Kia Rio · ТО</span></footer></blockquote>
+        <blockquote class="review reveal"><p>«Скрипели тормоза. Показали изношенные колодки и поменяли за час. Объяснили, когда менять диски, но ничего не навязывали».</p><footer><b>Марина</b><span>VW Polo · тормоза</span></footer></blockquote>
+        <blockquote class="review reveal"><p>«Удобно, что статус ремонта видно на сайте: не нужно звонить и отвлекать мастеров. Забрал машину ровно ко времени».</p><footer><b>Игорь</b><span>Toyota RAV4 · подвеска</span></footer></blockquote>
+      </div>
+      <p class="reviews__note">Отзывы на демо-сайте — примеры.</p>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="container faq__inner">
+      <div class="section-head">
+        <p class="eyebrow">Вопросы</p>
+        <h2>Частые вопросы</h2>
+        <p class="section-lead">Не нашли ответ? Позвоните нам — мастер ответит на вопрос по вашей машине.</p>
+      </div>
+      <div class="faq__list">
+        <details class="qa" open><summary>Можно привезти свои запчасти?</summary><p>Да. Цена работ не меняется. Гарантия на работу сохраняется, а на сами детали её даёт продавец.</p></details>
+        <details class="qa"><summary>Сохранится ли гарантия дилера?</summary><p>Да. Работаем по регламенту производителя, ставим сертифицированные расходники и делаем отметку в сервисной книжке. По закону дилер не может снять гарантию за обслуживание у нас.</p></details>
+        <details class="qa"><summary>Сколько ждать, пока чинят машину?</summary><p>ТО, колодки и шиномонтаж занимают 1–2 часа, можно подождать в зоне отдыха с кофе и Wi-Fi. Для долгого ремонта называем срок заранее, а статус видно на сайте.</p></details>
+        <details class="qa"><summary>Что, если найдёте ещё неисправности?</summary><p>Ничего не делаем без вашего согласия. Позвоним или пришлём фото с объяснением, а решать будете вы.</p></details>
+        <details class="qa"><summary>Как оплатить?</summary><p>Картой, наличными, по QR-коду или безналом для юрлиц. Выдаём заказ-наряд и чек.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Контакты ===== -->
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Контакты</p>
+        <h2>Как нас найти</h2>
+      </div>
+      <div class="contact">
+        <div class="contact__media"><img src="img/fleet.webp" alt="Посты автосервиса" loading="lazy" width="1200" height="800"></div>
+        <div class="contact__body">
+          <span class="status" data-status><i></i><b>—</b></span>
+          <h3 data-t="address">ул. Автомоторная, 12</h3>
+          <p class="contact__metro" data-metro-row><i></i>м. <span data-t="metro"></span></p>
+          <dl>
+            <div><dt>Режим</dt><dd data-t="hoursFull">ежедневно 9:00–21:00</dd></div>
+            <div><dt>Телефон</dt><dd><a data-tel data-t="phone" href="#">+7 (495) 000-00-00</a></dd></div>
+            <div data-wa-row><dt>Мессенджеры</dt><dd class="msgr"><a data-wa href="#" target="_blank" rel="noopener">WhatsApp</a><a data-tg href="#" target="_blank" rel="noopener">Telegram</a></dd></div>
+          </dl>
+          <div class="contact__actions">
+            <a data-tel href="#" class="btn btn--sm">Позвонить</a>
+            <a data-wa href="#" target="_blank" rel="noopener" class="btn btn--sm btn--ghost">WhatsApp</a>
+            <a data-map href="#" target="_blank" rel="noopener" class="btn btn--sm btn--ghost">Построить маршрут</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta__inner">
+      <h2>Запишитесь сейчас — приезжайте без&nbsp;очереди</h2>
+      <div class="cta__actions">
+        <a href="#booking" class="btn btn--dark btn--lg">Выбрать время</a>
+        <a data-tel href="#" class="btn btn--lg btn--outline-dark">Позвонить</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <a href="#top" class="logo"><span class="logo__mark" aria-hidden="true"></span><span class="logo__text" data-t="name">ТехБокс</span></a>
+    <p><span data-t="address">ул. Автомоторная, 12</span> · <span data-t="hoursFull">ежедневно 9:00–21:00</span> · <a data-tel data-t="phone" href="#">+7 (495) 000-00-00</a></p>
+    <p class="footer__muted">Демо-версия сайта. Цены и отзывы — примеры. <a href="admin.html">Вход для мастера</a></p>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a data-tel href="#" class="callbar__call" aria-label="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></a>
+  <a href="#booking" class="callbar__book">Записаться · <span data-status-text>—</span></a>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

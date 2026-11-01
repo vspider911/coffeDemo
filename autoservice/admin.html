@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Записи — кабинет мастера</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: var(--paper); padding-bottom: 0; }
+    .adm-head { background: var(--bg); color: var(--text-d); border-bottom: 1px solid var(--line-d); }
+    .adm-head .container { display: flex; align-items: center; gap: 20px; height: 68px; }
+    .adm-head .logo__text { font-size: 20px; }
+    .adm-head small { color: var(--muted-d); font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: .1em; margin-right: auto; }
+    .adm-head a.back { color: var(--muted-d); font-size: 14px; text-decoration: none; }
+    .adm-head a.back:hover { color: var(--accent); }
+    .adm { padding: 48px 0 80px; }
+    .login { max-width: 400px; margin: 40px auto; }
+    .login p { color: var(--muted); font-size: 14px; margin: 8px 0 20px; }
+    .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .bar h1 { font-size: 36px; margin-right: auto; }
+    .bar select, .bar input { padding: 10px 12px; border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--white); font-size: 14px; }
+    .mode { padding: 6px 10px; border-radius: 40px; font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; background: var(--paper-2); color: var(--muted); }
+    .mode.is-server { background: #e9f7ef; color: #1c7a47; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .kpi { padding: 18px 20px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+    .kpi span { font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+    .kpi b { display: block; margin-top: 10px; font: 600 30px/1 var(--head); }
+    .tbl { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; font-size: 14px; }
+    .tbl th { text-align: left; padding: 12px 14px; background: var(--ink); color: var(--text-d); font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .tbl td { padding: 14px; border-top: 1px solid var(--line); vertical-align: top; }
+    .tbl td small { display: block; color: var(--muted); }
+    .tbl .mono { font-family: var(--mono); font-weight: 600; white-space: nowrap; }
+    .tbl select { padding: 8px 10px; border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--paper); font-weight: 600; font-size: 13px; }
+    .tbl tr.st-cancelled td { opacity: .5; }
+    .tbl tr.st-new td:first-child { box-shadow: inset 4px 0 0 var(--accent); }
+    .empty { padding: 48px; text-align: center; color: var(--muted); background: var(--white); border: 1px dashed var(--line); border-radius: var(--radius); }
+    .err { color: #a5281b; font-size: 14px; margin-top: 10px; }
+    @media (max-width: 860px) {
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+      .tbl thead { display: none; }
+      .tbl, .tbl tbody, .tbl tr, .tbl td { display: block; width: 100%; }
+      .tbl tr { border-top: 1px solid var(--line); padding: 8px 0; }
+      .tbl td { border: 0; padding: 6px 16px; }
+    }
+  </style>
+  <script src="api.js"></script>
+</head>
+<body>
+  <header class="adm-head">
+    <div class="container">
+      <a href="index.html" class="logo"><span class="logo__mark" aria-hidden="true"></span><span class="logo__text">ТехБокс</span></a>
+      <small>кабинет мастера</small>
+      <a class="back" href="index.html">← На сайт</a>
+    </div>
+  </header>
+
+  <main class="adm container">
+    <form class="form login" id="login">
+      <h3>Вход</h3>
+      <p>Демо-пароль: <b>demo</b>. На сервере его задаёт переменная <code>ADMIN_TOKEN</code>.</p>
+      <label>Пароль<input type="password" id="pwd" autocomplete="current-password" required></label>
+      <button class="btn btn--block" type="submit">Войти</button>
+      <p class="err" id="loginErr" hidden></p>
+    </form>
+
+    <section id="panel" hidden>
+      <div class="bar">
+        <h1>Записи</h1>
+        <span class="mode" id="mode">—</span>
+        <select id="fStatus" aria-label="Фильтр по статусу"><option value="">Все статусы</option></select>
+        <input type="search" id="fSearch" placeholder="Поиск: телефон, авто, №" aria-label="Поиск">
+        <button class="btn btn--sm btn--ghost" id="refresh" type="button">Обновить</button>
+        <button class="btn btn--sm btn--ghost" id="logout" type="button">Выйти</button>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div id="list"></div>
+    </section>
+  </main>
+
+<script>
+(() => {
+  const API = window.TB_API;
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const money = (n) => Math.round(n).toLocaleString('ru-RU') + ' ₽';
+  const fmtM = (m) => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+  const fmtD = (s) => new Date(s + 'T00:00:00').toLocaleDateString('ru-RU', { weekday: 'short', day: 'numeric', month: 'short' });
+  let token = sessionStorage.getItem('tb_admin') || '';
+  let rows = [];
+
+  Object.entries(API.STATUS).forEach(([k, v]) => $('#fStatus').insertAdjacentHTML('beforeend', `<option value="${k}">${v}</option>`));
+
+  const render = () => {
+    const st = $('#fStatus').value, q = $('#fSearch').value.trim().toLowerCase();
+    const today = API.ymd(API.mskNow());
+    const list = rows.filter((b) => (!st || b.status === st) && (!q || [b.id, b.phone, b.car, b.name, b.service].join(' ').toLowerCase().includes(q)));
+    const active = rows.filter((b) => b.status !== 'cancelled');
+    $('#kpis').innerHTML = [
+      ['Всего записей', rows.length],
+      ['Сегодня', active.filter((b) => b.date === today).length],
+      ['Новые', rows.filter((b) => b.status === 'new').length],
+      ['Сумма по сметам', money(active.reduce((s, b) => s + (b.total || 0), 0))],
+    ].map(([k, v]) => `<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join('');
+    if (!list.length) { $('#list').innerHTML = `<div class="empty">${rows.length ? 'Ничего не найдено' : 'Записей пока нет. Запишитесь на сайте — запись появится здесь.'}</div>`; return; }
+    $('#list').innerHTML = `<table class="tbl"><thead><tr><th>№</th><th>Когда</th><th>Клиент</th><th>Работы</th><th>Смета</th><th>Статус</th></tr></thead><tbody>${list.map((b) => `
+      <tr class="st-${b.status}">
+        <td class="mono">${b.id}</td>
+        <td class="mono">${fmtD(b.date)}<small>${fmtM(b.minute)}</small></td>
+        <td><b>${esc(b.name || 'Без имени')}</b><small><a href="tel:${esc(b.phone)}">${esc(b.phone)}</a></small><small>${esc(b.car || '')}</small></td>
+        <td>${esc(b.works && b.works.length ? b.works.join(', ') : b.service)}${b.note ? `<small>«${esc(b.note)}»</small>` : ''}</td>
+        <td class="mono">${b.total ? money(b.total) : '—'}</td>
+        <td><select data-id="${b.id}" aria-label="Статус заказа ${b.id}">${Object.entries(API.STATUS).map(([k, v]) => `<option value="${k}" ${k === b.status ? 'selected' : ''}>${v}</option>`).join('')}</select></td>
+      </tr>`).join('')}</tbody></table>`;
+  };
+
+  const load = async () => {
+    try {
+      rows = await API.list(token);
+      $('#login').hidden = true; $('#panel').hidden = false;
+      const mode = await API.ready;
+      $('#mode').textContent = mode === 'server' ? 'сервер' : 'демо: в этом браузере';
+      $('#mode').classList.toggle('is-server', mode === 'server');
+      render();
+    } catch (e) {
+      if (e.status === 401) { sessionStorage.removeItem('tb_admin'); token = ''; $('#panel').hidden = true; $('#login').hidden = false; if ($('#pwd').value) { $('#loginErr').hidden = false; $('#loginErr').textContent = 'Неверный пароль'; } }
+      else alert(e.message);
+    }
+  };
+
+  $('#login').addEventListener('submit', (e) => { e.preventDefault(); token = $('#pwd').value; sessionStorage.setItem('tb_admin', token); load(); });
+  $('#logout').addEventListener('click', () => { sessionStorage.removeItem('tb_admin'); token = ''; $('#pwd').value = ''; $('#panel').hidden = true; $('#login').hidden = false; });
+  $('#refresh').addEventListener('click', load);
+  $('#fStatus').addEventListener('change', render);
+  $('#fSearch').addEventListener('input', render);
+  $('#list').addEventListener('change', async (e) => {
+    const s = e.target.closest('select[data-id]'); if (!s) return;
+    try { const b = await API.setStatus(token, s.dataset.id, s.value); rows = rows.map((r) => (r.id === b.id ? b : r)); render(); }
+    catch (err) { alert(err.message); load(); }
+  });
+  if (token) load();
+})();
+</script>
+</body>
+</html>

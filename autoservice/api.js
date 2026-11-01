@@ -1,32 +1,18 @@
 /*
-  Слой данных. Если сайт запущен через server.js — работает с API.
-  Если сайт открыт как статика (GitHub Pages, Vercel, файл с диска) — хранит записи
-  в localStorage браузера, чтобы запись, трекер ремонта и админка всё равно работали.
+  Слой данных демо-версии: записи хранятся в localStorage браузера,
+  поэтому запись, трекер ремонта и кабинет мастера работают без сервера.
+
+  Бэкенд добавим позже: достаточно реализовать те же методы
+  (busy, create, track, list, setStatus) через fetch к API —
+  страницы обращаются только к window.TB_API и менять их не придётся.
 */
 (() => {
   const KEY = 'techbox_bookings_v1';
   const digits = (v) => String(v || '').replace(/\D/g, '');
   const mskNow = () => { const d = new Date(); return new Date(d.getTime() + (d.getTimezoneOffset() + 180) * 60000); };
   const ymd = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const ready = Promise.resolve('local');
 
-  const json = async (url, opts = {}) => {
-    const r = await fetch(url, { ...opts, headers: { 'Content-Type': 'application/json', ...(opts.headers || {}) } });
-    const body = await r.json().catch(() => ({}));
-    if (!r.ok) throw Object.assign(new Error(body.error || 'Ошибка сервера'), { status: r.status });
-    return body;
-  };
-
-  const ready = (async () => {
-    if (location.protocol === 'file:') return 'local';
-    try {
-      const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 1500);
-      const r = await fetch('api/health', { signal: ctrl.signal, cache: 'no-store' });
-      clearTimeout(t);
-      return r.ok && (await r.json()).ok ? 'server' : 'local';
-    } catch { return 'local'; }
-  })();
-
-  // ---------- localStorage ----------
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || { seq: 1000, bookings: [] }; } catch { return { seq: 1000, bookings: [] }; } };
   const store = (db) => { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch { /* приватный режим */ } };
 
@@ -62,26 +48,12 @@
     },
   };
 
-  // ---------- сервер ----------
-  const server = {
-    async busy(date) { return (await json('api/slots?date=' + date)).busy; },
-    async create(data) { return json('api/bookings', { method: 'POST', body: JSON.stringify(data) }); },
-    async track(id, phone) { return json(`api/bookings/${encodeURIComponent(id)}?phone=${digits(phone).slice(-4)}`); },
-    async list(token) { return (await json('api/admin/bookings', { headers: { 'X-Admin-Token': token } })).bookings; },
-    async setStatus(token, id, status) { return json('api/admin/bookings/' + id, { method: 'PATCH', headers: { 'X-Admin-Token': token }, body: JSON.stringify({ status }) }); },
-  };
-
-  const pick = async () => ((await ready) === 'server' ? server : local);
   window.TB_API = {
     ready, ymd, mskNow,
     STATUS: {
       new: 'Заявка принята', confirmed: 'Запись подтверждена', in_work: 'Машина в работе',
       ready: 'Готово — можно забирать', done: 'Выдана клиенту', cancelled: 'Запись отменена',
     },
-    busy: async (date) => (await pick()).busy(date),
-    create: async (data) => (await pick()).create(data),
-    track: async (id, phone) => (await pick()).track(id, phone),
-    list: async (token) => (await pick()).list(token),
-    setStatus: async (token, id, status) => (await pick()).setStatus(token, id, status),
+    ...local,
   };
 })();

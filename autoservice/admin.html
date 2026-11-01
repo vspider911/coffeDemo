@@ -24,7 +24,6 @@
     .bar h1 { font-size: 36px; margin-right: auto; }
     .bar select, .bar input { padding: 10px 12px; border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--white); font-size: 14px; }
     .mode { padding: 6px 10px; border-radius: 40px; font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; background: var(--paper-2); color: var(--muted); }
-    .mode.is-server { background: #e9f7ef; color: #1c7a47; }
     .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
     .kpi { padding: 18px 20px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
     .kpi span { font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
@@ -61,7 +60,7 @@
   <main class="adm container">
     <form class="form login" id="login">
       <h3>Вход</h3>
-      <p>Демо-пароль: <b>demo</b>. На сервере его задаёт переменная <code>ADMIN_TOKEN</code>.</p>
+      <p>Демо-пароль: <b>demo</b>. В демо-версии записи хранятся в этом браузере.</p>
       <label>Пароль<input type="password" id="pwd" autocomplete="current-password" required></label>
       <button class="btn btn--block" type="submit">Войти</button>
       <p class="err" id="loginErr" hidden></p>
@@ -124,9 +123,7 @@
     try {
       rows = await API.list(token);
       $('#login').hidden = true; $('#panel').hidden = false;
-      const mode = await API.ready;
-      $('#mode').textContent = mode === 'server' ? 'сервер' : 'демо: в этом браузере';
-      $('#mode').classList.toggle('is-server', mode === 'server');
+      $('#mode').textContent = 'демо: в этом браузере';
       render();
     } catch (e) {
       if (e.status === 401) { ss.del('tb_admin'); token = ''; $('#panel').hidden = true; $('#login').hidden = false; if ($('#pwd').value) { $('#loginErr').hidden = false; $('#loginErr').textContent = 'Неверный пароль'; } }

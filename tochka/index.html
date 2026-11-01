@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ТОЧКА — автосервис (демо)</title>
+  <meta name="description" content="Демоверсия сайта автосервиса «ТОЧКА»: диагностика, техническое обслуживание, тормоза, подвеска и шиномонтаж. Цена — до начала ремонта.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d1d1f'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23e0622f'/%3E%3C/svg%3E">
+  <link rel="preload" as="image" href="img/hero-1200.webp" imagesrcset="img/hero-1200.webp 1200w, img/hero-2400.webp 2400w" imagesizes="(min-width: 1360px) 1280px, 100vw" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a class="logo" href="#top" aria-label="ТОЧКА — автосервис, в начало страницы">
+        <span class="logo__word">ТОЧКА</span><span class="logo__dot" aria-hidden="true"></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#services">Услуги</a></li>
+          <li><a class="nav__link" href="#price">Стоимость</a></li>
+          <li><a class="nav__link" href="#about">О сервисе</a></li>
+          <li><a class="nav__link" href="#contacts">Контакты</a></li>
+        </ul>
+        <div class="nav__mobile-extra">
+          <p class="nav__mobile-note">Пн–Пт 8:00–21:00, Сб–Вс 10:00–18:00</p>
+          <a class="nav__mobile-phone" href="tel:+74950000000">+7 (495) 000-00-00</a>
+        </div>
+      </nav>
+
+      <button class="btn btn--primary btn--sm header__cta" type="button" data-open-booking>Записаться</button>
+
+      <button class="burger" id="burger" type="button" aria-controls="nav" aria-expanded="false" aria-label="Открыть меню">
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- 1. Первый экран -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero__text">
+        <p class="eyebrow reveal">Автосервис полного цикла</p>
+        <h1 class="hero__title reveal" id="hero-title">Ваш автомобиль.<br><span class="hero__title-muted">В&nbsp;надёжных руках.</span></h1>
+        <p class="hero__lead reveal">Диагностика, обслуживание и&nbsp;ремонт легковых автомобилей. Называем цену до&nbsp;начала работ и&nbsp;показываем всё, что сделали.</p>
+        <div class="hero__actions reveal">
+          <button class="btn btn--primary" type="button" data-open-booking>Записаться на сервис</button>
+          <a class="btn btn--ghost" href="#price">Узнать стоимость</a>
+        </div>
+      </div>
+
+      <div class="container container--wide">
+        <figure class="hero__media media reveal reveal--scale">
+          <img
+            src="img/hero-1200.webp"
+            srcset="img/hero-1200.webp 1200w, img/hero-2400.webp 2400w"
+            sizes="(min-width: 1360px) 1280px, 100vw"
+            width="2400" height="1350"
+            alt="Чёрный внедорожник перед закрытыми воротами бокса"
+            fetchpriority="high" decoding="async">
+        </figure>
+
+        <dl class="facts">
+          <div class="facts__item reveal">
+            <dt class="facts__label">Работаем</dt>
+            <dd class="facts__value">с 2014 года</dd>
+          </div>
+          <div class="facts__item reveal">
+            <dt class="facts__label">Постов</dt>
+            <dd class="facts__value">4 подъёмника</dd>
+          </div>
+          <div class="facts__item reveal">
+            <dt class="facts__label">Гарантия на работы</dt>
+            <dd class="facts__value">12 месяцев</dd>
+          </div>
+          <div class="facts__item reveal">
+            <dt class="facts__label">Смета</dt>
+            <dd class="facts__value">до начала ремонта</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 2. Услуги -->
+    <section class="section services" id="services" aria-labelledby="services-title" tabindex="-1">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Услуги</p>
+          <h2 class="section-title reveal" id="services-title">Пять направлений,<br>в которых мы сильны.</h2>
+          <p class="section-lead reveal">Цены — за работу на компактном автомобиле. Точную сумму с&nbsp;запчастями назовём после осмотра и&nbsp;до&nbsp;начала ремонта.</p>
+        </header>
+
+        <div class="services__grid">
+          <div class="services__media" aria-hidden="true">
+            <figure class="services__frame media">
+              <img class="services__img is-active" data-media="diagnostics" src="img/diagnostics-1400.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+              <img class="services__img" data-media="maintenance" src="img/maintenance-1400.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+              <img class="services__img" data-media="brakes" src="img/brakes-1400.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+              <img class="services__img" data-media="suspension" src="img/suspension-1400.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+              <img class="services__img" data-media="tires" src="img/tires-1400.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+            </figure>
+            <p class="services__caption" id="services-caption">Проверка электрооборудования перед компьютерной диагностикой</p>
+          </div>
+
+          <ol class="svc-list">
+            <li class="svc reveal is-open" data-service="diagnostics" data-caption="Проверка электрооборудования перед компьютерной диагностикой">
+              <h3 class="svc__heading">
+                <button class="svc__toggle" type="button" id="svc-diagnostics-btn" aria-expanded="true" aria-controls="svc-diagnostics">
+                  <span class="svc__num">01</span>
+                  <span class="svc__name">Диагностика</span>
+                  <span class="svc__price">от 1&nbsp;500&nbsp;₽</span>
+                  <span class="svc__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="svc__panel" id="svc-diagnostics" role="region" aria-labelledby="svc-diagnostics-btn">
+                <div class="svc__panel-inner">
+                  <div class="svc__body">
+                    <figure class="svc__photo media">
+                      <img src="img/diagnostics-640.webp" width="640" height="427" alt="Провода для проверки аккумулятора в моторном отсеке" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="svc__desc">Считываем ошибки всех электронных блоков, проверяем датчики, аккумулятор и&nbsp;генератор, осматриваем автомобиль на&nbsp;подъёмнике. В&nbsp;отчёте — понятный список: что срочно, а&nbsp;что может подождать.</p>
+                    <ul class="svc__rows">
+                      <li><span>Компьютерная диагностика всех блоков</span><span class="svc__row-price">1&nbsp;500&nbsp;₽</span></li>
+                      <li><span>Осмотр автомобиля на подъёмнике</span><span class="svc__row-price">1&nbsp;200&nbsp;₽</span></li>
+                      <li><span>Проверка перед покупкой с выездом</span><span class="svc__row-price">4&nbsp;500&nbsp;₽</span></li>
+                    </ul>
+                    <div class="svc__meta">
+                      <span class="svc__time">40–90 минут</span>
+                      <button class="link-btn" type="button" data-open-booking data-service="diagnostics">Записаться на диагностику<svg class="link-btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="svc reveal" data-service="maintenance" data-caption="Замена моторного масла по регламенту производителя">
+              <h3 class="svc__heading">
+                <button class="svc__toggle" type="button" id="svc-maintenance-btn" aria-expanded="false" aria-controls="svc-maintenance">
+                  <span class="svc__num">02</span>
+                  <span class="svc__name">Техническое обслуживание</span>
+                  <span class="svc__price">от 3&nbsp;900&nbsp;₽</span>
+                  <span class="svc__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="svc__panel" id="svc-maintenance" role="region" aria-labelledby="svc-maintenance-btn">
+                <div class="svc__panel-inner">
+                  <div class="svc__body">
+                    <figure class="svc__photo media">
+                      <img src="img/maintenance-640.webp" width="640" height="427" alt="Мастер заливает моторное масло через воронку" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="svc__desc">Обслуживаем по&nbsp;регламенту производителя и&nbsp;делаем отметку в&nbsp;сервисной книжке. Работаем с&nbsp;вашими запчастями или подберём оригинал и&nbsp;проверенный аналог — в&nbsp;смете будут оба варианта.</p>
+                    <ul class="svc__rows">
+                      <li><span>Базовое ТО: масло, масляный, воздушный и салонный фильтры</span><span class="svc__row-price">3&nbsp;900&nbsp;₽</span></li>
+                      <li><span>Расширенное ТО: свечи, жидкости, ремни</span><span class="svc__row-price">7&nbsp;500&nbsp;₽</span></li>
+                      <li><span>Замена масла в автоматической коробке</span><span class="svc__row-price">4&nbsp;200&nbsp;₽</span></li>
+                    </ul>
+                    <div class="svc__meta">
+                      <span class="svc__time">1–2 часа</span>
+                      <button class="link-btn" type="button" data-open-booking data-service="maintenance">Записаться на ТО<svg class="link-btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="svc reveal" data-service="brakes" data-caption="Снятие колеса перед проверкой тормозных механизмов">
+              <h3 class="svc__heading">
+                <button class="svc__toggle" type="button" id="svc-brakes-btn" aria-expanded="false" aria-controls="svc-brakes">
+                  <span class="svc__num">03</span>
+                  <span class="svc__name">Тормозная система</span>
+                  <span class="svc__price">от 1&nbsp;800&nbsp;₽</span>
+                  <span class="svc__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="svc__panel" id="svc-brakes" role="region" aria-labelledby="svc-brakes-btn">
+                <div class="svc__panel-inner">
+                  <div class="svc__body">
+                    <figure class="svc__photo media">
+                      <img src="img/brakes-640.webp" width="640" height="427" alt="Мастер откручивает колесо пневмогайковёртом" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="svc__desc">Измеряем толщину колодок и&nbsp;дисков, проверяем суппорты и&nbsp;шланги. Если до&nbsp;замены ещё далеко — так и&nbsp;скажем и&nbsp;покажем замер на&nbsp;фото.</p>
+                    <ul class="svc__rows">
+                      <li><span>Замена передних тормозных колодок</span><span class="svc__row-price">2&nbsp;400&nbsp;₽</span></li>
+                      <li><span>Замена дисков и колодок на одной оси</span><span class="svc__row-price">4&nbsp;600&nbsp;₽</span></li>
+                      <li><span>Замена тормозной жидкости</span><span class="svc__row-price">1&nbsp;800&nbsp;₽</span></li>
+                    </ul>
+                    <div class="svc__meta">
+                      <span class="svc__time">1–2 часа</span>
+                      <button class="link-btn" type="button" data-open-booking data-service="brakes">Записаться на ремонт тормозов<svg class="link-btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="svc reveal" data-service="suspension" data-caption="Работа с элементами ходовой части на подъёмнике">
+              <h3 class="svc__heading">
+                <button class="svc__toggle" type="button" id="svc-suspension-btn" aria-expanded="false" aria-controls="svc-suspension">
+                  <span class="svc__num">04</span>
+                  <span class="svc__name">Подвеска</span>
+                  <span class="svc__price">от 1&nbsp;200&nbsp;₽</span>
+                  <span class="svc__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="svc__panel" id="svc-suspension" role="region" aria-labelledby="svc-suspension-btn">
+                <div class="svc__panel-inner">
+                  <div class="svc__body">
+                    <figure class="svc__photo media">
+                      <img src="img/suspension-640.webp" width="640" height="427" alt="Руки мастера с гаечным ключом под днищем автомобиля" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="svc__desc">Находим источник стука, а&nbsp;не&nbsp;меняем всё подряд. После ремонта ходовой делаем развал-схождение на&nbsp;3D-стенде и&nbsp;отдаём распечатку параметров.</p>
+                    <ul class="svc__rows">
+                      <li><span>Диагностика подвески</span><span class="svc__row-price">1&nbsp;200&nbsp;₽</span></li>
+                      <li><span>Замена стоек стабилизатора, пара</span><span class="svc__row-price">2&nbsp;200&nbsp;₽</span></li>
+                      <li><span>Замена амортизаторов, пара</span><span class="svc__row-price">4&nbsp;800&nbsp;₽</span></li>
+                      <li><span>Развал-схождение</span><span class="svc__row-price">2&nbsp;500&nbsp;₽</span></li>
+                    </ul>
+                    <div class="svc__meta">
+                      <span class="svc__time">от 1 часа</span>
+                      <button class="link-btn" type="button" data-open-booking data-service="suspension">Записаться на ремонт подвески<svg class="link-btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="svc reveal" data-service="tires" data-caption="Зимние шины, подготовленные к сезонной замене">
+              <h3 class="svc__heading">
+                <button class="svc__toggle" type="button" id="svc-tires-btn" aria-expanded="false" aria-controls="svc-tires">
+                  <span class="svc__num">05</span>
+                  <span class="svc__name">Шиномонтаж</span>
+                  <span class="svc__price">от 700&nbsp;₽</span>
+                  <span class="svc__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="svc__panel" id="svc-tires" role="region" aria-labelledby="svc-tires-btn">
+                <div class="svc__panel-inner">
+                  <div class="svc__body">
+                    <figure class="svc__photo media">
+                      <img src="img/tires-640.webp" width="640" height="427" alt="Стопки зимних шин на складе" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="svc__desc">Снимаем, балансируем и&nbsp;устанавливаем колёса, затягиваем динамометрическим ключом. Шины можно оставить на&nbsp;хранение — помоем и&nbsp;упакуем.</p>
+                    <ul class="svc__rows">
+                      <li><span>Сезонная замена, 4 колеса до R16</span><span class="svc__row-price">2&nbsp;000&nbsp;₽</span></li>
+                      <li><span>Сезонная замена, 4 колеса R17–R19</span><span class="svc__row-price">2&nbsp;800&nbsp;₽</span></li>
+                      <li><span>Ремонт прокола</span><span class="svc__row-price">700&nbsp;₽</span></li>
+                      <li><span>Хранение комплекта, сезон</span><span class="svc__row-price">3&nbsp;500&nbsp;₽</span></li>
+                    </ul>
+                    <div class="svc__meta">
+                      <span class="svc__time">30–50 минут</span>
+                      <button class="link-btn" type="button" data-open-booking data-service="tires">Записаться на шиномонтаж<svg class="link-btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Подход к работе (тёмная секция) -->
+    <section class="section dark" id="about" aria-labelledby="about-title" tabindex="-1">
+      <div class="container">
+        <header class="section-head section-head--split">
+          <div>
+            <p class="eyebrow eyebrow--on-dark reveal">О сервисе</p>
+            <h2 class="section-title reveal" id="about-title">Сначала объясняем.<br>Потом ремонтируем.</h2>
+          </div>
+          <p class="section-lead reveal">Никаких работ без вашего согласия и&nbsp;непонятных строк в&nbsp;счёте. Три правила, которые мы соблюдаем в&nbsp;каждом заказе — от&nbsp;замены лампочки до&nbsp;капитального ремонта.</p>
+        </header>
+
+        <figure class="dark__media media reveal reveal--scale">
+          <img src="img/garage-1400.webp" srcset="img/garage-640.webp 640w, img/garage-1400.webp 1400w" sizes="(min-width: 1280px) 1180px, 100vw" width="1400" height="933" alt="Автомобиль в полутёмном боксе с открытой дверью" loading="lazy" decoding="async">
+        </figure>
+
+        <ol class="rules">
+          <li class="rule reveal">
+            <div class="rule__head">
+              <span class="rule__num">01</span>
+              <h3 class="rule__title">Стоимость — до ремонта</h3>
+            </div>
+            <div class="rule__content">
+              <p class="rule__text">После диагностики присылаем смету: работы, запчасти и&nbsp;сроки. Если в&nbsp;процессе обнаружится что-то ещё — остановимся и&nbsp;позвоним. Сумма в&nbsp;чеке не&nbsp;превысит согласованную.</p>
+              <div class="estimate" aria-label="Пример сметы">
+                <div class="estimate__top">
+                  <span>Смета № 2417</span>
+                  <span>Kia Rio, 2019</span>
+                </div>
+                <ul class="estimate__rows">
+                  <li><span>Замена передних колодок</span><span>2&nbsp;400&nbsp;₽</span></li>
+                  <li><span>Колодки, оригинал</span><span>3&nbsp;900&nbsp;₽</span></li>
+                  <li><span>Замена тормозной жидкости</span><span>1&nbsp;800&nbsp;₽</span></li>
+                </ul>
+                <div class="estimate__total"><span>Итого</span><span>8&nbsp;100&nbsp;₽</span></div>
+                <p class="estimate__status"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>Согласовано клиентом в 11:42</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="rule reveal">
+            <div class="rule__head">
+              <span class="rule__num">02</span>
+              <h3 class="rule__title">Объясняем без жаргона</h3>
+            </div>
+            <div class="rule__content">
+              <p class="rule__text">Расскажем, что сломалось, почему и&nbsp;что будет, если не&nbsp;чинить сейчас. Разделим работы на&nbsp;срочные и&nbsp;те, что спокойно дождутся следующего визита.</p>
+              <dl class="verdicts">
+                <div class="verdict">
+                  <dt class="verdict__tag verdict__tag--urgent">Срочно</dt>
+                  <dd>Передние колодки: осталось 2&nbsp;мм при норме от&nbsp;3&nbsp;мм. Тормозной путь уже увеличился.</dd>
+                </div>
+                <div class="verdict">
+                  <dt class="verdict__tag">Может подождать</dt>
+                  <dd>Сайлентблок заднего рычага: первые трещины. Проверим снова через 10&nbsp;000&nbsp;км.</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+
+          <li class="rule reveal">
+            <div class="rule__head">
+              <span class="rule__num">03</span>
+              <h3 class="rule__title">Фотоотчёт по каждому заказу</h3>
+            </div>
+            <div class="rule__content">
+              <p class="rule__text">Фотографируем снятые детали и&nbsp;ключевые этапы работы. Отчёт приходит в&nbsp;мессенджер, а&nbsp;старые запчасти по&nbsp;желанию отдаём вместе с&nbsp;автомобилем.</p>
+              <ul class="report">
+                <li class="report__item">
+                  <figure class="media report__media"><img src="img/brakes-640.webp" width="640" height="427" alt="Снятие колеса" loading="lazy" decoding="async"></figure>
+                  <span class="report__cap">09:14 · Снятие колеса</span>
+                </li>
+                <li class="report__item">
+                  <figure class="media report__media"><img src="img/engine-640.webp" width="640" height="427" alt="Ремни и шкивы двигателя" loading="lazy" decoding="async"></figure>
+                  <span class="report__cap">09:40 · Осмотр ремней</span>
+                </li>
+                <li class="report__item">
+                  <figure class="media report__media"><img src="img/mechanic-640.webp" width="640" height="427" alt="Мастер проверяет моторный отсек" loading="lazy" decoding="async"></figure>
+                  <span class="report__cap">11:05 · Финальная проверка</span>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4. Калькулятор -->
+    <section class="section calc-section" id="price" aria-labelledby="price-title" tabindex="-1">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Стоимость</p>
+          <h2 class="section-title reveal" id="price-title">Посчитайте заранее.</h2>
+          <p class="section-lead reveal">Выберите класс автомобиля и&nbsp;нужные работы — сумма пересчитается сразу. Это ориентир: окончательную смету пришлём после осмотра.</p>
+        </header>
+
+        <form class="calc" id="calc" aria-describedby="calc-note">
+          <div class="calc__main">
+            <fieldset class="calc__group reveal">
+              <legend class="calc__legend"><span class="calc__step">1</span>Класс автомобиля</legend>
+              <div class="segments">
+                <label class="segment">
+                  <input type="radio" name="carClass" value="compact" data-k="1" data-label="Компактный" checked>
+                  <span class="segment__body"><span class="segment__name">Компактный</span><span class="segment__hint">Rio, Solaris, Polo</span></span>
+                </label>
+                <label class="segment">
+                  <input type="radio" name="carClass" value="mid" data-k="1.2" data-label="Средний">
+                  <span class="segment__body"><span class="segment__name">Средний</span><span class="segment__hint">Octavia, Camry, Tiguan</span></span>
+                </label>
+                <label class="segment">
+                  <input type="radio" name="carClass" value="suv" data-k="1.45" data-label="Внедорожник">
+                  <span class="segment__body"><span class="segment__name">Внедорожник</span><span class="segment__hint">Prado, X5, минивэны</span></span>
+                </label>
+                <label class="segment">
+                  <input type="radio" name="carClass" value="premium" data-k="1.7" data-label="Премиум">
+                  <span class="segment__body"><span class="segment__name">Премиум</span><span class="segment__hint">E-класс, A6, 5 серия</span></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc__group reveal">
+              <legend class="calc__legend"><span class="calc__step">2</span>Работы</legend>
+              <ul class="options">
+                <li><label class="option"><input type="checkbox" name="work" value="diag" data-base="1500" data-cat="diagnostics" checked><span class="option__check" aria-hidden="true"></span><span class="option__name">Компьютерная диагностика</span><span class="option__price" data-price></span></label></li>
+                <li><label class="option"><input type="checkbox" name="work" value="to" data-base="3900" data-cat="maintenance" checked><span class="option__check" aria-hidden="true"></span><span class="option__name">Базовое ТО: масло и фильтры</span><span class="option__price" data-price></span></label></li>
+                <li><label class="option"><input type="checkbox" name="work" value="pads" data-base="2400" data-cat="brakes"><span class="option__check" aria-hidden="true"></span><span class="option__name">Замена передних тормозных колодок</span><span class="option__price" data-price></span></label></li>
+                <li><label class="option"><input type="checkbox" name="work" value="fluid" data-base="1800" data-cat="brakes"><span class="option__check" aria-hidden="true"></span><span class="option__name">Замена тормозной жидкости</span><span class="option__price" data-price></span></label></li>
+                <li><label class="option"><input type="checkbox" name="work" value="susp" data-base="1200" data-cat="suspension"><span class="option__check" aria-hidden="true"></span><span class="option__name">Диагностика подвески</span><span class="option__price" data-price></span></label></li>
+                <li><label class="option"><input type="checkbox" name="work" value="shocks" data-base="4800" data-cat="suspension"><span class="option__check" aria-hidden="true"></span><span class="option__name">Замена амортизаторов, пара</span><span class="option__price" data-price></span></label></li>
+                <li><label class="option"><input type="checkbox" name="work" value="align" data-base="2500" data-cat="suspension"><span class="option__check" aria-hidden="true"></span><span class="option__name">Развал-схождение</span><span class="option__price" data-price></span></label></li>
+                <li><label class="option"><input type="checkbox" name="work" value="tires" data-base="2000" data-cat="tires"><span class="option__check" aria-hidden="true"></span><span class="option__name">Сезонная замена шин, 4 колеса</span><span class="option__price" data-price></span></label></li>
+              </ul>
+              <p class="calc__disclaimer">Расчёт предварительный: стоимость работ без запчастей и&nbsp;расходников. Окончательную сумму согласуем после осмотра.</p>
+            </fieldset>
+          </div>
+
+          <aside class="summary" aria-label="Итог расчёта">
+            <div class="summary__inner">
+              <p class="summary__label">Предварительно<span class="summary__class" id="summary-class">· Компактный</span></p>
+              <p class="summary__total"><output id="calc-total" for="calc" aria-live="polite">5&nbsp;400&nbsp;₽</output></p>
+              <p class="summary__count" id="calc-count">2 работы</p>
+              <ul class="summary__list" id="calc-list"></ul>
+              <p class="summary__note" id="calc-note">Расчёт предварительный: стоимость работ без запчастей и&nbsp;расходников. Окончательную сумму согласуем после осмотра.</p>
+              <div class="summary__actions">
+                <button class="btn btn--primary btn--block" type="button" id="calc-book" data-open-booking data-from-calc>Записаться<span class="long-label"> с&nbsp;этим расчётом</span></button>
+                <button class="text-btn" type="reset" id="calc-reset">Сбросить</button>
+              </div>
+            </div>
+          </aside>
+        </form>
+      </div>
+    </section>
+
+    <!-- 5. Этапы -->
+    <section class="section steps-section" id="steps" aria-labelledby="steps-title" tabindex="-1">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Как проходит визит</p>
+          <h2 class="section-title reveal" id="steps-title">Три точки на пути<br>к готовому автомобилю.</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__dot" aria-hidden="true"></span>
+            <p class="step__meta">Шаг 1 · 2 минуты</p>
+            <h3 class="step__title">Запись</h3>
+            <p class="step__text">Оставьте заявку на&nbsp;сайте или позвоните. Администратор перезвонит в&nbsp;течение 15&nbsp;минут в&nbsp;рабочее время и&nbsp;подтвердит удобное время.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__dot" aria-hidden="true"></span>
+            <p class="step__meta">Шаг 2 · 30–60 минут</p>
+            <h3 class="step__title">Диагностика и&nbsp;согласование</h3>
+            <p class="step__text">Мастер осматривает автомобиль, составляет смету и&nbsp;присылает её вам с&nbsp;фотографиями. Ремонт начинается только после вашего «да».</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__dot" aria-hidden="true"></span>
+            <p class="step__meta">Шаг 3 · в согласованный срок</p>
+            <h3 class="step__title">Выдача автомобиля</h3>
+            <p class="step__text">Показываем, что сделано, отдаём фотоотчёт и&nbsp;старые детали. На&nbsp;работы действует гарантия 12&nbsp;месяцев.</p>
+          </li>
+        </ol>
+
+        <div class="steps__cta reveal">
+          <p>Свободные окна есть уже на&nbsp;этой неделе.</p>
+          <button class="btn btn--primary" type="button" data-open-booking>Записаться на сервис</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Контакты -->
+    <section class="section contacts" id="contacts" aria-labelledby="contacts-title" tabindex="-1">
+      <div class="container">
+        <header class="section-head section-head--row">
+          <div>
+            <p class="eyebrow reveal">Контакты</p>
+            <h2 class="section-title reveal" id="contacts-title">Приезжайте.</h2>
+          </div>
+          <p class="demo-badge reveal">Демонстрационные данные — адрес и&nbsp;телефоны вымышлены</p>
+        </header>
+
+        <div class="contacts__grid">
+          <div class="contacts__info">
+            <dl class="info">
+              <div class="info__row reveal">
+                <dt>Адрес</dt>
+                <dd>Москва, ул.&nbsp;Сервисная, 12, стр.&nbsp;3<br><span class="muted">Въезд со стороны Заводского проезда</span></dd>
+              </div>
+              <div class="info__row reveal">
+                <dt>Телефон</dt>
+                <dd><a class="info__link" href="tel:+74950000000">+7 (495) 000-00-00</a></dd>
+              </div>
+              <div class="info__row reveal">
+                <dt>Почта</dt>
+                <dd><a class="info__link" href="mailto:service@tochka.example">service@tochka.example</a></dd>
+              </div>
+              <div class="info__row reveal">
+                <dt>Режим работы</dt>
+                <dd>
+                  <table class="hours">
+                    <caption class="visually-hidden">Режим работы по дням недели</caption>
+                    <tbody>
+                      <tr data-days="1,2,3,4,5"><th scope="row">Понедельник — пятница</th><td>8:00–21:00</td></tr>
+                      <tr data-days="6,0"><th scope="row">Суббота и воскресенье</th><td>10:00–18:00</td></tr>
+                    </tbody>
+                  </table>
+                  <p class="status" id="open-status" aria-live="polite"></p>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <figure class="map reveal">
+            <svg class="map__svg" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="map-title map-desc">
+              <title id="map-title">Схема проезда</title>
+              <desc id="map-desc">Сервис находится на улице Сервисной, в семи минутах пешком от станции метро «Заводская». Въезд — с Заводского проезда.</desc>
+              <rect class="map__bg" width="640" height="480"/>
+              <path class="map__block" d="M40 40h185v115H40zM275 40h150v110H275zM475 40h150v115H475zM40 215h185v100H40zM40 345h185v95H40zM290 350h130v90H290zM490 290h130v150H490z"/>
+              <path class="map__road map__road--main" d="M-10 182 L650 182"/>
+              <path class="map__road" d="M250 -10 L250 490"/>
+              <path class="map__road" d="M450 -10 L450 220 L470 490"/>
+              <path class="map__road map__road--minor" d="M250 330 L650 238"/>
+              <text class="map__label" x="292" y="188">Сервисная улица</text>
+              <text class="map__label map__label--small" transform="translate(255 452) rotate(-90)">Заводской пр.</text>
+              <path class="map__route" d="M150 182 L250 182 L250 272 L320 272"/>
+              <g class="map__metro" transform="translate(150 182)">
+                <circle r="13"/>
+                <text y="5" text-anchor="middle">М</text>
+              </g>
+              <text class="map__label map__label--strong" x="104" y="226">Заводская</text>
+              <text class="map__label map__label--accent" x="264" y="236">7 минут пешком</text>
+              <g class="map__point" transform="translate(334 272)">
+                <circle class="map__pulse" r="22"/>
+                <circle class="map__ring" r="13"/>
+                <circle class="map__dot" r="6"/>
+              </g>
+              <text class="map__label map__label--strong" x="358" y="278">ТОЧКА</text>
+            </svg>
+            <figcaption class="map__caption">Схема проезда. Парковка для клиентов — у ворот бокса, 6 мест.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a class="logo logo--small" href="#top" aria-label="ТОЧКА — в начало страницы"><span class="logo__word">ТОЧКА</span><span class="logo__dot" aria-hidden="true"></span></a>
+        <p class="footer__note">Демонстрационный сайт. Компания, адрес и&nbsp;телефоны вымышлены, заявки никуда не&nbsp;отправляются.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Разделы в подвале">
+        <a href="#services">Услуги</a>
+        <a href="#price">Стоимость</a>
+        <a href="#about">О сервисе</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <p class="footer__legal">© <span id="year">2026</span> ТОЧКА · Фото: Unsplash</p>
+    </div>
+  </footer>
+
+  <!-- Модальное окно записи -->
+  <div class="modal" id="booking" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="booking-title" aria-describedby="booking-desc">
+      <button class="modal__close" type="button" data-close-modal aria-label="Закрыть окно записи">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <div class="modal__view" id="booking-form-view">
+        <h2 class="modal__title" id="booking-title">Запись на сервис</h2>
+        <p class="modal__desc" id="booking-desc">Оставьте контакты — администратор перезвонит и&nbsp;подтвердит время. Поля со&nbsp;звёздочкой обязательны.</p>
+        <p class="modal__calc" id="booking-calc" hidden></p>
+
+        <form class="form" id="booking-form" novalidate>
+          <div class="field">
+            <label class="field__label" for="f-name">Имя <span aria-hidden="true">*</span></label>
+            <input class="field__input" id="f-name" name="name" type="text" autocomplete="given-name" required minlength="2" aria-describedby="f-name-error">
+            <p class="field__error" id="f-name-error"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-phone">Телефон <span aria-hidden="true">*</span></label>
+            <input class="field__input" id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required aria-describedby="f-phone-error">
+            <p class="field__error" id="f-phone-error"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-service">Услуга <span aria-hidden="true">*</span></label>
+            <div class="select">
+              <select class="field__input" id="f-service" name="service" required aria-describedby="f-service-error">
+                <option value="">Выберите услугу</option>
+                <option value="diagnostics">Диагностика</option>
+                <option value="maintenance">Техническое обслуживание</option>
+                <option value="brakes">Тормозная система</option>
+                <option value="suspension">Подвеска</option>
+                <option value="tires">Шиномонтаж</option>
+                <option value="other">Другое — расскажу по телефону</option>
+              </select>
+            </div>
+            <p class="field__error" id="f-service-error"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-date">Желаемая дата <span aria-hidden="true">*</span></label>
+            <input class="field__input" id="f-date" name="date" type="date" required aria-describedby="f-date-hint f-date-error">
+            <p class="field__hint" id="f-date-hint">Запись открыта на 60 дней вперёд.</p>
+            <p class="field__error" id="f-date-error"></p>
+          </div>
+          <button class="btn btn--primary btn--block" type="submit">Отправить заявку</button>
+          <p class="form__fineprint">Это демоверсия: данные не&nbsp;покидают ваш браузер.</p>
+        </form>
+      </div>
+
+      <div class="modal__view success" id="booking-success" hidden>
+        <span class="success__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <p class="success__title" id="booking-success-title" tabindex="-1">Демо: заявка заполнена. Данные никуда не&nbsp;отправлены</p>
+        <dl class="success__summary" id="booking-summary"></dl>
+        <button class="btn btn--primary btn--block" type="button" data-close-modal>Готово</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

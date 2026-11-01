@@ -115,7 +115,9 @@
         if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
         target.focus({ preventScroll: true });
       }
-      if (history.pushState) history.pushState(null, '', id === 'top' ? location.pathname + location.search : '#' + id);
+      try {
+        if (history.pushState) history.pushState(null, '', id === 'top' ? location.pathname + location.search : '#' + id);
+      } catch (err) { /* в изолированном фрейме история может быть недоступна */ }
     };
     if (menuWasOpen) requestAnimationFrame(go); else go();
   });
